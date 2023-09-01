@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.models';
 
 
@@ -10,14 +11,20 @@ import { Usuario } from 'src/app/models/usuario.models';
 })
 export class HeaderComponent {
 
-  public usuario: Usuario;
+  public usuario: any;
 
-  constructor(  ) {
+  constructor( private router: Router  ) {
     this.usuario = "";
   }
 
-  logout() {
+  ngOnInit(): void {
+    this.usuario = localStorage.getItem('user');
     
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/login');
   }
 
 

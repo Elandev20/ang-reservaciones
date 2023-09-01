@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HotelComponent } from './hotel/hotel.component';
+import { ViewBookingComponent } from './view-booking/view-booking.component';
 
 
 
@@ -13,7 +15,9 @@ import { RouterModule } from '@angular/router';
   declarations: [
     BookingComponent,
     DashboardComponent,
-    PagesComponent
+    PagesComponent,
+    HotelComponent,
+    ViewBookingComponent,
   ],
   exports: [
     PagesComponent
