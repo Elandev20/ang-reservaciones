@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HotelComponent } from './hotel/hotel.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -27,7 +28,8 @@ import { ViewBookingComponent } from './view-booking/view-booking.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }

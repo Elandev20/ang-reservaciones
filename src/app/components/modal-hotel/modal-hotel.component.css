@@ -1,0 +1,33 @@
+                .modal-main {
+                    max-width: 700px;
+                }
+                
+                .modal-main_content {
+                    background: white;
+                }
+                
+                .hotel-img img {
+                    width: 70px;
+                    height: 70px;
+                }
+                
+                .container-img {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .modal-header-items {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .modal-header-items button {
+                    justify-self: flex-end;
+                }
+                
+                .close-button-modal {
+                    position: absolute;
+                    right: 0;
+                    padding: 20px;
+                    cursor: pointer;
+                }
