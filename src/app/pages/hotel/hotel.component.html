@@ -4,209 +4,24 @@
     </div>
     <div class="hotels">
 
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
+        <div class="hotels_row" *ngFor="let item of listHotels">
+            <img [src]="item.imagen" alt="Hotel">
             <div class="hotel-titile">
-                Las palmashotel
+                {{item.nombre}}
             </div>
             <div class="hotel-loaction">
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Medellin fasdf
+                <i class="fa fa-map-marker" aria-hidden="true"></i> {{item.ciudad.ciudadNombre}}
             </div>
 
             <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
+                <button (click)="editHotel(item.hotelId)"><i class="fa fa-edit"></i></button>
                 <button><i class="fa fa-trash"></i></button>
             </div>
 
 
         </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel askfjkasjdlfkjalksjdflk
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-        <div class="hotels_row">
-            <img src="./assets/images/users/1.jpg" alt="Hotel">
-            <div class="hotel-titile">
-                Las palmashotel
-            </div>
-            <div class="hotel-loaction"><i class="fa fa-map-marker" aria-hidden="true"></i>Medellin</div>
-            <div class="hotel-actions">
-
-
-                <button><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
-            </div>
-
-
-        </div>
-
-
     </div>
 
 </div>
 
-<app-modal-hotel></app-modal-hotel>
+<app-modal-hotel [data]="Hotel"></app-modal-hotel>

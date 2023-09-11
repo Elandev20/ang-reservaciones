@@ -52,3 +52,9 @@
     width: 100%;
     z-index: 9999;
 }
+
+.container-main {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
