@@ -1,0 +1,9 @@
+.button-save {
+    display: flex;
+    justify-content: end;
+}
+
+.button-save button {
+    cursor: pointer;
+    margin-left: 10px;
+}

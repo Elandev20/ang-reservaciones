@@ -1,6 +1,10 @@
-<div class="container">
+<div class="container animated fadeIn" *ngIf="editando && nuevo">
+    <div class="text-maintenance">
+        <h1>Hoteles</h1>
+    </div>
+
     <div class="row">
-        <button type="button" class="btn btn-primary button-plus" (click)="newHotel()"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-primary button-plus" (click)="newHotel()">Añadir Hotel</button>
     </div>
     <div class="hotels">
 
@@ -8,14 +12,18 @@
             <img [src]="item.imagen" alt="Hotel">
             <div class="hotel-titile">
                 {{item.nombre}}
+                <div class="hotel-title__disabled" *ngIf="!item.activo">
+                    No disponible
+                </div>
             </div>
             <div class="hotel-loaction">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> {{item.ciudad.ciudadNombre}}
             </div>
 
             <div class="hotel-actions">
-                <button (click)="editHotel(item.hotelId)"><i class="fa fa-edit"></i></button>
-                <button><i class="fa fa-trash"></i></button>
+                <button title="Asignar Habitaciones" (click)="editRooms(item.hotelId)"><i class="fa fa-hotel"></i></button>
+                <button title="Editar" (click)="editHotel(item.hotelId)"><i class="fa fa-edit"></i></button>
+                <button title="Habilitar/Deshabilitar" [ngClass]="!item.activo == true ? 'button-on' : 'button-off'" (click)="disabledHotel(item.hotelId)"><i class="fa fa-power-off"></i></button>
             </div>
 
 
@@ -24,4 +32,59 @@
 
 </div>
 
-<app-modal-hotel [data]="Hotel"></app-modal-hotel>
+<div class=" animated fadeIn " *ngIf="!editando">
+    <button style="cursor: pointer;" (click)="back()" title="Habilitar/Deshabilitar"><i class="fa fa-arrow-left"></i></button>
+    <div class="text-maintenance">
+        <h1>Añadir Habitaciones</h1>
+    </div>
+    <div class="container container-maintenance">
+        <app-room [data]="idHotel"></app-room>
+    </div>
+</div>
+
+<div class=" animated fadeIn " *ngIf="!nuevo">
+    <button (click)="new()" class="btn btn-primary"><i class="fa fa-arrow-left"></i></button>
+    <br>
+    <div class="text-maintenance">
+        <h1 *ngIf="textNewHotel" class="row">Añadir Hotel</h1>
+        <h1 *ngIf="!textNewHotel" class="row">Editar Hotel</h1>
+    </div>
+    <br>
+    <div class="container container-maintenance">
+        <form [formGroup]="formHotel">
+            <div>
+                <div>Nombre</div>
+                <div><input class="form-control" formControlName="nombre" type="text"></div>
+                <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
+                <div>Ciudad</div>
+                <div>
+                    <select class="form-control" formControlName="ciudadId" aria-label="Default select example">
+                        <option *ngFor="let item of listCity" [ngValue]="item.id" >{{item.descripcion}}</option>
+                      </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Imagen</label>
+                    <div>
+                        <input type="file" formControlName="imagen" (change)="onFileSelected($event)">
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Disponible
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="cursor: pointer;" (click)="back()" class="btn btn-default" data-dismiss="modal">
+                Cancelar
+            </button>
+                <button type="submit" style="cursor: pointer;" (click)="saveHotel()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-modal-hotel></app-modal-hotel>

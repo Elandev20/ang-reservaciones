@@ -57,4 +57,13 @@
     padding-right: 0px;
     padding-left: 0px;
     padding-bottom: 0px;
+    padding-top: 10px;
+}
+
+.button-plus {
+    width: 99%;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.692);
+    /* background-color: rgb(219, 219, 219); */
+    border-color: transparent;
 }

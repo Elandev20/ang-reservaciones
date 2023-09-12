@@ -4,7 +4,8 @@ export const environment = {
   base_url: 'http://localhost:19626/api',
   controllerUser: "Usuario",
   controlerCity: "Ciudad",
-  controlerHotel: "Hotel"
+  controlerHotel: "Hotel",
+  controlerRoom: "Habitacion"
 };
 
 

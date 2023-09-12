@@ -1,0 +1,58 @@
+<div *ngIf="!enabledNewRoom">
+    <button type="button" class="btn btn-primary button-plus" (click)="newRoom()">Añadir habitación</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero Habitación</th>
+                <th>Tipo Habitación</th>
+                <th>Activo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listRooms">
+                <td>{{item.numeroHabitacion}}</td>
+                <td>{{item.tipoHabitacion.descripcion}}</td>
+                <td>{{item.activo}}</td>
+                <td><button>Ver...</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="enabledNewRoom">
+    <form [formGroup]="formRoom">
+        <div>
+            <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
+            <input class="form-control" formControlName="habitacionId" *ngIf="disable" type="number">
+            <div>Descripcion</div>
+            <div><input class="form-control" formControlName="descripcion" required type="text"></div>
+            <br>
+            <div>Tipo Habitación</div>
+            <div>
+                <select class="form-control" formControlName="tipoHabitacionId" aria-label="Default select example">
+                <option *ngFor="let item of listTypeRooms" [ngValue]="item.id" >{{item.descripcion}}</option>
+              </select>
+            </div>
+            <br>
+            <div>Impuesto</div>
+            <div><input class="form-control" formControlName="impuesto" type="number"></div>
+            <br>
+            <div>Precio Habitación</div>
+            <div><input class="form-control" formControlName="precioHabitacion" type="number"></div>
+            <br>
+            <div>Numero Habitación</div>
+            <div><input class="form-control" formControlName="numeroHabitacion" type="number"></div>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+              Disponible
+            </label>
+            </div>
+        </div>
+        <div class="button-save">
+            <button type="submit" (click)="saveRoom()" class="btn btn-primary">Aceptar</button>
+            <button type="submit" (click)="back()" class="btn btn-danger">Cancelar</button>
+        </div>
+    </form>
+</div>

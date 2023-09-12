@@ -11,39 +11,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="forma">
-                        <div>
-                            <div>Nombre</div>
-                            <div><input class="form-control" formControlName="nombre" type="text"></div>
-                            <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
-                            <div>Ciudad</div>
-                            <div>
-                                <select class="form-control" formControlName="ciudadId" aria-label="Default select example">
-                                    <option *ngFor="let item of listCity" [ngValue]="item.id" >{{item.descripcion}}</option>
-                                  </select>
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Imagen</label>
-                                <div>
-                                    <input type="file" formControlName="imagen" (change)="onFileSelected($event)">
-                                </div>
-                            </div>
-
-                            <div class="form-check">
-                                <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  Disponible
-                                </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" (click)="cerrarModal()" class="btn btn-default" data-dismiss="modal">
-                            Cancelar
-                        </button>
-                            <button type="submit" (click)="saveHotel()" class="btn btn-primary">Agregar</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -30,4 +30,8 @@ export class HotelService {
   editHotel(hotel: HotelForm){
     return this.http.put(`${ base_url }/${ controller }/UpdateHotel`, hotel);
   }
+
+  disabledHotel(id: number){
+    return this.http.put(`${ base_url }/${ controller }/disableHotel?id=${id}`, id);
+  }
 }

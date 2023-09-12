@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { HotelComponent } from './hotel/hotel.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ComponentsModule } from '../components/components.module';
+import { RoomComponent } from './room/room.component';
 
 
 
@@ -19,9 +20,10 @@ import { ComponentsModule } from '../components/components.module';
     PagesComponent,
     HotelComponent,
     ViewBookingComponent,
+    RoomComponent,
   ],
   exports: [
-    PagesComponent
+    PagesComponent,
   ],
   imports: [
     CommonModule,

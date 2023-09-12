@@ -11,7 +11,7 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.404);
     border-radius: 10px;
     background-color: white;
-    margin: 10px;
+    margin: 30px 0px;
     padding: 10px 15px;
     background-color: rgb(236, 240, 240);
     flex-wrap: wrap;
@@ -45,7 +45,7 @@
 
 .hotel-actions {
     display: flex;
-    width: 90px;
+    width: 150px;
 }
 
 .hotel-actions button {
@@ -56,10 +56,12 @@
     width: 40px;
     height: 40px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.397);
+    cursor: pointer !important;
+    margin-left: 10px;
 }
 
 .hotel-actions button:last-child {
-    background-color: #f25a5a;
+    /* background-color: #f25a5a; */
     margin-left: 10px;
 }
 
@@ -67,10 +69,38 @@
     color: white;
 }
 
-.button-plus {
-    width: 99%;
-    margin-bottom: 20px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.692);
-    /* background-color: rgb(219, 219, 219); */
-    border-color: transparent;
+.hotel-title__disabled {
+    font-size: 12px;
+    font-weight: 500;
+    color: #ff0015;
+    font-style: italic;
+}
+
+.container-maintenance {
+    width: 800px;
+}
+
+.text-maintenance {
+    display: flex;
+    justify-content: center;
+}
+
+.text-maintenance h1 {
+    margin: 40px 0;
+}
+
+.button-on {
+    background-color: #55b973 !important;
+}
+
+.button-off {
+    border: none;
+    background-color: #c4c0c0 !important;
+    padding: 3px;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.397);
+    cursor: pointer !important;
+    margin-left: 10px;
 }
