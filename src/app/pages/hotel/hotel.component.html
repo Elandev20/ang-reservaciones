@@ -53,23 +53,34 @@
     <div class="container container-maintenance">
         <form [formGroup]="formHotel">
             <div>
+                <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
                 <div>Nombre</div>
                 <div><input class="form-control" formControlName="nombre" type="text"></div>
-                <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
+                <span class="text-danger" *ngIf="nombreNoValida">
+                    Nombre is required
+                                </span>
+                <br>
                 <div>Ciudad</div>
                 <div>
                     <select class="form-control" formControlName="ciudadId" aria-label="Default select example">
+                        <option selected value="">Please select</option>
                         <option *ngFor="let item of listCity" [ngValue]="item.id" >{{item.descripcion}}</option>
                       </select>
                 </div>
-
+                <span class="text-danger" *ngIf="ciudadNoValida">
+                    Ciudad is required
+                                </span>
+                <br>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Imagen</label>
                     <div>
                         <input type="file" formControlName="imagen" (change)="onFileSelected($event)">
                     </div>
                 </div>
-
+                <span class="text-danger" *ngIf="imagenNoValida">
+                    Imagen is required
+                                </span>
+                <br>
                 <div class="form-check">
                     <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">

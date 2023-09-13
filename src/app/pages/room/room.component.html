@@ -13,8 +13,8 @@
             <tr *ngFor="let item of listRooms">
                 <td>{{item.numeroHabitacion}}</td>
                 <td>{{item.tipoHabitacion.descripcion}}</td>
-                <td>{{item.activo}}</td>
-                <td><button>Ver...</button></td>
+                <td>{{item.activo == true ? 'Activo' : 'Inactivo'}}</td>
+                <td><button (click)="viewDetailRoom(item.habitacionId)">Ver...</button></td>
             </tr>
         </tbody>
     </table>
@@ -25,23 +25,39 @@
             <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
             <input class="form-control" formControlName="habitacionId" *ngIf="disable" type="number">
             <div>Descripcion</div>
-            <div><input class="form-control" formControlName="descripcion" required type="text"></div>
+            <div><input class="form-control" formControlName="descripcion" type="text"></div>
+            <span class="text-danger" *ngIf="descripcionNoValida">
+                Descripcion is required
+                            </span>
             <br>
             <div>Tipo Habitación</div>
             <div>
                 <select class="form-control" formControlName="tipoHabitacionId" aria-label="Default select example">
+                <option selected value="">Please select</option>
                 <option *ngFor="let item of listTypeRooms" [ngValue]="item.id" >{{item.descripcion}}</option>
               </select>
             </div>
+            <span class="text-danger" *ngIf="tipoHabitacionNoValida">
+                Tipo Habitación is required
+                            </span>
             <br>
             <div>Impuesto</div>
             <div><input class="form-control" formControlName="impuesto" type="number"></div>
+            <span class="text-danger" *ngIf="impuestoNoValida">
+                impuesto is required
+                            </span>
             <br>
             <div>Precio Habitación</div>
             <div><input class="form-control" formControlName="precioHabitacion" type="number"></div>
+            <span class="text-danger" *ngIf="precioNoValido">
+                Precio Habitación is required
+                            </span>
             <br>
             <div>Numero Habitación</div>
             <div><input class="form-control" formControlName="numeroHabitacion" type="number"></div>
+            <span class="text-danger" *ngIf="numeroHabitacionNoValido">
+                Numero Habitación is required
+                            </span>
             <br>
             <div class="form-check">
                 <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">

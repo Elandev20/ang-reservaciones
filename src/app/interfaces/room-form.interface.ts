@@ -1,8 +1,7 @@
 export interface RoomForm {
     descripcion: string;
     activo: boolean;
-    hotelId: number;
-    idTipoHabitacion: number;
+    tipoHabitacionId: number;
     impuesto: number;
     precioHabitacion: number;
     numeroHabitacion: number;

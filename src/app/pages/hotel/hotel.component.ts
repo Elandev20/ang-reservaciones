@@ -3,7 +3,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CiudadService } from 'src/app/services/ciudad.service';
 
 @Component({
@@ -40,10 +40,10 @@ export class HotelComponent implements OnInit {
 
   crearFormulario(){
     this.formHotel = this.fb.group({
-      nombre: new FormControl(),
+      nombre: new FormControl("",Validators.required),
       activo: new FormControl(),
-      ciudadId: new FormControl(),
-      imagen: new FormControl(),
+      ciudadId: new FormControl("",Validators.required),
+      imagen: new FormControl("",Validators.required),
       hotelId: new FormControl(0),
     })
 }
@@ -68,7 +68,7 @@ export class HotelComponent implements OnInit {
   newHotel(){
     this.nuevo = false;
     this.formHotel.controls['nombre'].setValue('');
-    this.formHotel.controls['ciudadId'].setValue(0);
+    this.formHotel.controls['ciudadId'].setValue("");
     this.formHotel.controls['activo'].setValue(true);
     this.formHotel.controls['hotelId'].setValue(0);
     this.textNewHotel = true;
@@ -133,39 +133,71 @@ export class HotelComponent implements OnInit {
     }
   }
 
+  get nombreNoValida() {
+    return this.formHotel.get('nombre')?.errors && this.formHotel.get('nombre')?.touched
+  }
+
+  get ciudadNoValida() {
+    return this.formHotel.get('ciudadId')?.errors && this.formHotel.get('ciudadId')?.touched
+  }
+
+  get imagenNoValida() {
+    return this.formHotel.get('imagen')?.errors && this.formHotel.get('imagen')?.touched
+  }
+
   saveHotel(){
   if (this.Hotel == null) {
-    this.hotelService.saveHotel(this.formHotel.value).subscribe(data => {
-      Swal.fire({
-        icon: 'success',
-        text: 'Datos Guardados exitosamente',
+    if (this.formHotel.invalid) {
+      return Object.values(this.formHotel.controls).forEach( controls => {
+        controls.markAllAsTouched();
       })
-      this.viewHotels();
-      this.back();
-    }, (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al momento de almacenar la información',
-        text: err,
-      })
-    })
+    }
+    this.saveData();
+    this.crearFormulario();
   }
   else{
-    debugger
-    this.hotelService.editHotel(this.formHotel.value).subscribe(data => {
-      Swal.fire({
-        icon: 'success',
-        text: 'Datos Guardados exitosamente',
+    if (this.formHotel.invalid) {
+      return Object.values(this.formHotel.controls).forEach( controls => {
+        controls.markAllAsTouched();
       })
-      this.viewHotels();
-      this.back();
-    }, (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al momento de modificar la información',
-        text: err,
-      })
-    })
+    }
+
+    this.updateData();
+    this.crearFormulario();
   }
+}
+
+saveData(){
+  this.hotelService.saveHotel(this.formHotel.value).subscribe(data => {
+    Swal.fire({
+      icon: 'success',
+      text: 'Datos Guardados exitosamente',
+    })
+    this.viewHotels();
+    this.back();
+  }, (err) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al momento de almacenar la información',
+      text: err,
+    })
+  })
+}
+
+updateData(){
+  this.hotelService.editHotel(this.formHotel.value).subscribe(data => {
+    Swal.fire({
+      icon: 'success',
+      text: 'Datos Guardados exitosamente',
+    })
+    this.viewHotels();
+    this.back();
+  }, (err) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al momento de modificar la información',
+      text: err,
+    })
+  })
 }
 }

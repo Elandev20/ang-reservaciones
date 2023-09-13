@@ -24,7 +24,14 @@ export class RoomService {
   }
 
   saveRoom(room: RoomForm){
-  
     return this.http.post(`${ base_url }/${ controller }/SaveRoom`, room);
+  }
+
+  updateRoom(room: RoomForm){
+    return this.http.put(`${ base_url }/${ controller }/UpdateRoom`, room);
+  }
+
+  listRoomsById(id: number){
+    return this.http.get(`${ base_url }/${ controller }/listRoomsById/${id}`);
   }
 }
