@@ -8,18 +8,18 @@ import { ModalService } from 'src/app/services/modal.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-modal-hotel',
-  templateUrl: './modal-hotel.component.html',
-  styleUrls: ['./modal-hotel.component.css']
+  selector: 'app-modal-booking',
+  templateUrl: './modal-booking.component.html',
+  styleUrls: ['./modal-booking.component.css']
 })
-export class ModalHotelComponent {
+export class ModalBoookingComponent {
 
   @Input() data : any;
 
   public selectedFile : File;
   forma: FormGroup;
   newForma : FormGroup;
-  listCity : any = [];
+  listCity : any;
   disable : boolean;
   
   constructor(public modalService: ModalService, private http: HttpClient, 
@@ -30,10 +30,7 @@ export class ModalHotelComponent {
 
   ngOnInit(): void {
   this.disable = false;
-   this.ciudadService.getCity().subscribe(data => {
-    this.listCity = data;
-   });
-   
+  this.listCity = this.data;
   }
 
   cerrarModal(){
@@ -64,7 +61,6 @@ export class ModalHotelComponent {
   
 
   saveHotel(){
-    debugger
   if (this.data == null) {
     this.hotelService.saveHotel(this.forma.value).subscribe(data => {
     

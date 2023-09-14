@@ -124,7 +124,6 @@ export class HotelComponent implements OnInit {
   }
 
   setIconColor(state : boolean){
-    debugger
     if (state) {
       return 'button-on'
     }

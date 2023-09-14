@@ -1,1 +1,127 @@
-<p>view-booking works!</p>
+<div class="container">
+
+    <div class="hotels" *ngIf="!viewList">
+        <div class="text-header">
+            <h1>Ver reservas</h1>
+        </div>
+        <div class="hotels_row" *ngFor="let item of listBooking">
+            <img [src]="item.hotel.imagen" alt="Hotel">
+            <div class="hotel-titile">
+                {{item.hotel.nombre}}
+            </div>
+            <div class="hotel-loaction">
+                <i class="fa fa-user" aria-hidden="true"></i>{{item.pasajero.nombre}}
+            </div>
+
+            <div class="hotel-actions">
+                <button class="button-info" title="Ver detalle" (click)="viewBookingSelected(item.reservaId)"><i class="fa fa-info-circle"></i></button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- <div *ngIf="!viewList">
+        
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Hotel</th>
+                    <th>Pasajero</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listBooking">
+                    <td>{{item.reservaId}}</td>
+                    <td>{{item.hotel.nombre}}</td>
+                    <td>{{item.pasajero.nombre}}</td>
+                    <td><button class="button-info" title="Ver detalle" (click)="viewBookingSelected(item.reservaId)"><i class="fa fa-info-circle"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+
+    <div *ngIf="viewList">
+        <button style="cursor: pointer;" class="btn btn-primary" (click)="back()"><i class="fa fa-arrow-left"></i></button>
+        <div class="text-header">
+            <h1>Detalle Reserva</h1>
+        </div>
+        <br>
+        <div class="container-detail">
+            <div>
+                <h6>ID Reserva</h6>
+                <div>
+                    <span>{{bookingSelected.reservaId}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Fecha Inicio</h6>
+                <div>
+                    <span>{{bookingSelected.fInicio | date: 'shortDate'}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Fecha Fin</h6>
+                <div>
+                    <span>{{bookingSelected.fFin | date: 'shortDate'}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Nombre</h6>
+                <div>
+                    <span>{{bookingSelected.pasajero.nombre}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Documento</h6>
+                <div>
+                    <span>{{bookingSelected.pasajero.cedula}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Tipo Documento</h6>
+                <div>
+                    <span>{{bookingSelected.pasajero.tipoDocumento.descripcion}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Email</h6>
+                <div>
+                    <span>{{bookingSelected.pasajero.email}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Genero</h6>
+                <div>
+                    <span>{{bookingSelected.pasajero.genero.descripcion}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Hotel</h6>
+                <div>
+                    <span>{{bookingSelected.hotel.nombre}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>Ciudad</h6>
+                <div>
+                    <span>{{bookingSelected.hotel.ciudad.ciudadNombre}}</span>
+                </div>
+            </div>
+            <div>
+                <h6>N° Habitación</h6>
+                <span>{{bookingSelected.hotel.habitacion.numeroHabitacion}}</span>
+            </div>
+            <div>
+                <h6>Tipo Habitación</h6>
+                <div>
+                    <span>{{bookingSelected.hotel.habitacion.tipoHabitacion.descripcion}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <app-modal-booking [data]="bookingSelected"></app-modal-booking> -->

@@ -31,7 +31,6 @@ export class RoomComponent {
   }
 
   getListRooms(id: number){
-    debugger
     this.roomService.listRooms(id).subscribe(data => {
       this.listRooms = data;
       
@@ -151,7 +150,6 @@ back(){
 }
 
 viewDetailRoom(id: number){
-  debugger
   this.roomService.listRoomsById(id).subscribe(data => {
     this.Room = data;
     this.setValues(this.Room);

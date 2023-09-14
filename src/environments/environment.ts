@@ -5,7 +5,8 @@ export const environment = {
   controllerUser: "Usuario",
   controlerCity: "Ciudad",
   controlerHotel: "Hotel",
-  controlerRoom: "Habitacion"
+  controlerRoom: "Habitacion",
+  controlerBooking: "Reserva"
 };
 
 

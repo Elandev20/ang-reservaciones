@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalHotelComponent } from './modal-hotel/modal-hotel.component';
+import { ModalBoookingComponent } from './modal-hotel/modal-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-  
-    ModalHotelComponent
+    ModalBoookingComponent
   ],
   exports: [
-    ModalHotelComponent
+    ModalBoookingComponent
   ],
   imports: [
     CommonModule,
