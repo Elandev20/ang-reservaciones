@@ -59,6 +59,11 @@
                 Numero Habitación is required
                             </span>
             <br>
+            <div>Maximo Personas</div>
+            <div><input class="form-control" formControlName="maxPersonas" type="number"></div>
+            <span class="text-danger" *ngIf="maxPersonaNoValida">
+                Maximo Personas is required
+                            </span>
             <div>
                 <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">

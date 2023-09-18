@@ -53,6 +53,7 @@ export class RoomComponent {
       precioHabitacion: new FormControl("", Validators.required),
       activo: new FormControl(0, Validators.required),
       numeroHabitacion: new FormControl("", Validators.required),
+      maxPersonas: new FormControl("", Validators.required),
     })
 }
 
@@ -131,6 +132,10 @@ get numeroHabitacionNoValido() {
   return this.formRoom.get('numeroHabitacion')?.errors && this.formRoom.get('numeroHabitacion')?.touched
 }
 
+get maxPersonaNoValida() {
+  return this.formRoom.get('maxPersonas')?.errors && this.formRoom.get('maxPersonas')?.touched
+}
+
 newRoom(){
   this.enabledNewRoom = true;
   this.Room = null;
@@ -143,6 +148,7 @@ RoomNew(){
   this.formRoom.controls['impuesto'].setValue("");
   this.formRoom.controls['precioHabitacion'].setValue("");
   this.formRoom.controls['numeroHabitacion'].setValue("");
+  this.formRoom.controls['maxPersonas'].setValue("");
 }
 
 back(){
@@ -167,6 +173,7 @@ setValues(data:any){
     this.formRoom.controls['activo'].setValue(data.activo);
     this.formRoom.controls['numeroHabitacion'].setValue(data.numeroHabitacion);
     this.formRoom.controls['activo'].setValue(data.activo);
+    this.formRoom.controls['maxPersonas'].setValue(data.impuesto);
 }
 
 }

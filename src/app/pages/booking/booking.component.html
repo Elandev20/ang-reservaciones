@@ -8,51 +8,157 @@
 					</span>
                 </ng-template>
                 <div>Desde</div>
-                <div class="input-group col-3">
+                <div class="input-group col-2">
                     <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" style="position: absolute;z-index: -1;" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!"
                         tabindex="-1" />
                     <input #dpFromDate class="form-control" autocomplete="off" formControlName="fInicio" placeholder="yyyy-mm-dd" name="dpFromDate" [value]="formatter.format(fromDate)" (click)="datepicker.toggle()" (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
                     />
                 </div>
                 <div>Hasta</div>
-                <div class="input-group col-3">
+                <div class="input-group col-2">
                     <input #dpToDate class="form-control" autocomplete="off" formControlName="fFin" placeholder="yyyy-mm-dd" name="dpToDate" (click)="datepicker.toggle()" [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
                 </div>
-
-                <div class="select-city">
-                    <select class="form-control " formControlName="ciudadId" aria-label="Default select example">
+                <div>Ciudad</div>
+                <div class="input-group col-2">
+                    <select class="form-control" formControlName="ciudadId" aria-label="Default select example">
                         <option selected value="">Please select</option>
                         <option *ngFor="let item of listCity" [ngValue]="item.id" >{{item.descripcion}}</option>
                       </select>
                 </div>
-                <button class="btn btn-outline-success" type="submit" (click)="searchHotel()">Search</button>
+                <div>Personas</div>
+                <input type="number" formControlName="maxPersonas" class="form-control input-group col-1 persons">
+                <button class="btn btn-outline-success" type="submit" (click)="searchHotel()">Buscar</button>
             </div>
         </form>
     </div>
 </nav>
 <br>
-<div class="container  ">
-    <div *ngIf="!reserved" class="animated fadeIn container-manin">
-        <div class="card-main" *ngFor="let item of listHotelSearch">
-            <img [src]="item.imagen" class="card-img-top" alt="...">
-            <hr>
-            <div class="card-body">
-                <div class="card-title">
-                    <h5>{{item.nombre}}</h5>
+<div class="container">
+    <div *ngIf="!reserved && !GoToBooking" class="animated fadeIn">
+        <div class="text-header">
+            <h1 *ngIf="hotelfinded">Hoteles Disponibles</h1>
+        </div>
+        <div class="container-manin">
+
+            <div class="card-main" *ngFor="let item of listHotelSearch">
+                <img [src]="item.imagen" class="card-img-top" alt="...">
+                <hr>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>{{item.nombre}}</h5>
+                    </div>
+                    <div class="card-text">
+                        {{item.descripcion}}
+                    </div>
                 </div>
-                <div class="card-text">
-                    {{item.descripcion}}
+                <div class="card-button">
+                    <button (click)="reservedHotel(item.hotelId)" class="btn-primary">Ver habitaciones</button>
                 </div>
-            </div>
-            <div class="card-button">
-                <button (click)="reservedHotel(item.hotelId)" class="btn-primary">Reservar</button>
             </div>
         </div>
     </div>
 
     <!-- reservado -->
-    <div *ngIf="reserved" class="animated fadeIn">
-        <button class="btn btn-primary " style="cursor: pointer;" (click)="back()"><i class="fa fa-arrow-left"></i></button>
-        <h1>hola</h1>
+    <div *ngIf="reserved && !GoToBooking" class="animated fadeIn">
+        <button class="btn btn-primary" style="cursor: pointer;" (click)="back() "><i class="fa fa-arrow-left"></i></button>
+        <div class="text-header">
+            <h1>Habitaciones Disponibles</h1>
+        </div>
+        <div class="container-rooms">
+            <div class="card-main" *ngFor="let item of listRoomToReserve">
+                <img src="./assets/images/hotels/habitacion.jpg " class="card-img-top" alt="...">
+                <hr>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h6>Precio Habitación : {{item.precioHabitacion | currency}}</h6>
+                    </div>
+                    <div>
+                        <span>Maximo ({{item.maxPersonas}}) Personas</span>
+                    </div>
+                    <div>
+                        <span>Tipo Habitación: </span>{{item.tipoHabitacion.descripcion}}
+                    </div>
+                    <div>
+                        <span>Impuesto: </span>{{item.impuesto | currency}}
+                    </div>
+                    <div class="card-text">
+                        {{item.descripcion}}
+                    </div>
+                </div>
+                <div class="card-button">
+                    <button (click)="booking(item.habitacionId)" class="btn-primary">Reservar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="GoToBooking">
+        <button class="btn btn-primary" style="cursor: pointer;" (click)="backToRooms()"><i class="fa fa-arrow-left"></i></button>
+        <div class="text-header">
+            <h1>Reserva</h1>
+        </div>
+        <div>
+            <form [formGroup]="formBooking" class="form-booking">
+                <input class="form-control" formControlName="hotelId" *ngIf="disable" type="number">
+                <input class="form-control" formControlName="habitacionId" *ngIf="disable" type="number">
+                <div>
+                    <h6>Documento</h6>
+                    <div><input class="form-control" formControlName="pasajeroId" type="number"></div>
+                    <span class="text-danger" *ngIf="documentoNoValida">Documento is required</span>
+                </div>
+                <div>
+                    <h6>Tipo Documento</h6>
+                    <div>
+                        <select class="form-control" formControlName="tipoDocumentoId" aria-label="Default select example">
+                                <option selected value="">Please select</option>
+                                <option *ngFor="let item of listTypeDoc" [ngValue]="item.id" >{{item.descripcion}}</option>
+                            </select>
+                    </div>
+                    <span class="text-danger" *ngIf="typeDocumentoNoValida">Tipo Documento is required</span>
+                </div>
+                <div>
+                    <h6>Genero</h6>
+                    <div>
+                        <select class="form-control" formControlName="genero" aria-label="Default select example">
+                                <option selected value="">Please select</option>
+                                <option *ngFor="let item of listGender" [ngValue]="item.id" >{{item.descripcion}}</option>
+                            </select>
+                    </div>
+                    <span class="text-danger" *ngIf="typeGenderNoValida">Genero is required</span>
+                </div>
+                <div>
+                    <h6>Nombre</h6>
+                    <div><input class="form-control" formControlName="nombre" type="text"></div>
+                    <span class="text-danger" *ngIf="nombreNoValida">Nombre is required</span>
+                </div>
+                <div>
+                    <h6>Email</h6>
+                    <div><input class="form-control" formControlName="email" type="text"></div>
+                    <span class="text-danger" *ngIf="emailNoValida">Email is required</span>
+                </div>
+                <div>
+                    <h6>Teléfono</h6>
+                    <div><input class="form-control" formControlName="telefono" type="number"></div>
+                    <span class="text-danger" *ngIf="telefonoNoValida">Teléfono is required</span>
+                </div>
+                <div>
+                    <h6>Nombre en caso de emergencia</h6>
+                    <div><input class="form-control" formControlName="nombreEmergencia" type="text"></div>
+                    <span class="text-danger" *ngIf="nombreEmerNoValida">Campo is required</span>
+                </div>
+                <div>
+                    <h6>Teléfono en caso de emergencia</h6>
+                    <div><input class="form-control" formControlName="telefonoEmergencia" type="number"></div>
+                    <span class="text-danger" *ngIf="telefonoEmerNoValida">Campo is required</span>
+                </div>
+
+            </form>
+            <div>
+                <div class="button-save">
+                    <button type="button" (click)="enviar()" class="btn btn-primary">Aceptar</button>
+                    <button type="button" (click)="back()" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

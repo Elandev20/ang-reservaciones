@@ -79,3 +79,8 @@
     cursor: pointer !important;
     margin-left: 10px;
 }
+
+.text-header {
+    display: flex;
+    justify-content: center;
+}
