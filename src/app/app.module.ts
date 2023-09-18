@@ -8,6 +8,7 @@ import { PagesModule } from './pages/pages.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     PagesModule,
     AuthModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(), NgbModule, // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

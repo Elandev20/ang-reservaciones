@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { BookingComponent } from './booking/booking.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -10,6 +10,7 @@ import { HotelComponent } from './hotel/hotel.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ComponentsModule } from '../components/components.module';
 import { RoomComponent } from './room/room.component';
+import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -31,7 +32,10 @@ import { RoomComponent } from './room/room.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    NgbDatepickerModule,
+    JsonPipe,
+    NgbAlertModule
   ]
 })
 export class PagesModule { }

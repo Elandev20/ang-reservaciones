@@ -67,3 +67,15 @@
     /* background-color: rgb(219, 219, 219); */
     border-color: transparent;
 }
+
+.button-back {
+    border: none;
+    background-color: #745af2;
+    padding: 3px;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.397);
+    cursor: pointer !important;
+    margin-left: 10px;
+}

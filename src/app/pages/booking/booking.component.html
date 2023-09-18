@@ -1,42 +1,58 @@
-<div id="main-wrapper">
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary nav-main">
+    <div class="container-fluid">
+        <form [formGroup]="formSearch">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <ng-template #t let-date let-focused="focused">
+                    <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+						{{ date.day }}
+					</span>
+                </ng-template>
+                <div>Desde</div>
+                <div class="input-group col-3">
+                    <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" style="position: absolute;z-index: -1;" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!"
+                        tabindex="-1" />
+                    <input #dpFromDate class="form-control" autocomplete="off" formControlName="fInicio" placeholder="yyyy-mm-dd" name="dpFromDate" [value]="formatter.format(fromDate)" (click)="datepicker.toggle()" (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                    />
+                </div>
+                <div>Hasta</div>
+                <div class="input-group col-3">
+                    <input #dpToDate class="form-control" autocomplete="off" formControlName="fFin" placeholder="yyyy-mm-dd" name="dpToDate" (click)="datepicker.toggle()" [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
+                </div>
+
+                <div class="select-city">
+                    <select class="form-control " formControlName="ciudadId" aria-label="Default select example">
+                        <option selected value="">Please select</option>
+                        <option *ngFor="let item of listCity" [ngValue]="item.id" >{{item.descripcion}}</option>
+                      </select>
+                </div>
+                <button class="btn btn-outline-success" type="submit" (click)="searchHotel()">Search</button>
+            </div>
+        </form>
+    </div>
+</nav>
+<br>
+<div class="container  ">
+    <div *ngIf="!reserved" class="animated fadeIn container-manin">
+        <div class="card-main" *ngFor="let item of listHotelSearch">
+            <img [src]="item.imagen" class="card-img-top" alt="...">
+            <hr>
+            <div class="card-body">
+                <div class="card-title">
+                    <h5>{{item.nombre}}</h5>
+                </div>
+                <div class="card-text">
+                    {{item.descripcion}}
+                </div>
+            </div>
+            <div class="card-button">
+                <button (click)="reservedHotel(item.hotelId)" class="btn-primary">Reservar</button>
             </div>
         </div>
-    </nav>
+    </div>
 
+    <!-- reservado -->
+    <div *ngIf="reserved" class="animated fadeIn">
+        <button class="btn btn-primary " style="cursor: pointer;" (click)="back()"><i class="fa fa-arrow-left"></i></button>
+        <h1>hola</h1>
+    </div>
 </div>

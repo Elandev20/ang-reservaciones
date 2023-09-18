@@ -34,4 +34,8 @@ export class HotelService {
   disabledHotel(id: number){
     return this.http.put(`${ base_url }/${ controller }/disableHotel?id=${id}`, id);
   }
+
+  searchHotelByCity(id:number){
+    return this.http.get(`${ base_url }/${ controller }/listHotelsByCity/${id}`);
+  }
 }

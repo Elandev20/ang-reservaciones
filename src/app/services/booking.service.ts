@@ -19,4 +19,5 @@ export class BookingService {
   viewBooking(id:number){
     return this.http.get(`${ base_url }/${ controller }/ListBookingById/${id}`);
   }
+
 }

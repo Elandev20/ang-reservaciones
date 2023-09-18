@@ -2,3 +2,93 @@
     display: flex;
     justify-content: center;
 }
+
+.dp-hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+
+.custom-day.focused {
+    background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+}
+
+.custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+}
+
+.nav-main {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.397);
+    height: 70px;
+    border-radius: 100px;
+    margin-top: 5px;
+}
+
+.card-main {
+    width: 18rem;
+    border: solid 1px gainsboro;
+    border-radius: 21px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.card-main h5 {
+    display: flex;
+    justify-content: center;
+}
+
+.container-manin {
+    display: flex;
+}
+
+.card-main button {
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.card-main img {
+    width: 265px;
+    height: 190px;
+}
+
+.card-text {
+    display: flex;
+    align-items: center;
+    margin: 0px 10px 0px 10px;
+    height: 100px;
+    display: block;
+}
+
+.card-title {
+    margin-bottom: 5px;
+}
+
+.card-img-top {
+    border-radius: 14px;
+}
+
+.card-button {
+    display: flex;
+    justify-content: center;
+}
+
+.select-city {
+    margin-right: 10px;
+}

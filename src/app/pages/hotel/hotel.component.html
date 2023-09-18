@@ -32,8 +32,8 @@
 
 </div>
 
-<div class=" animated fadeIn " *ngIf="!editando">
-    <button style="cursor: pointer;" (click)="back()"><i class="fa fa-arrow-left"></i></button>
+<div class="animated fadeIn" *ngIf="!editando">
+    <button class="button-back" style="cursor: pointer;" (click)="back()"><i class="fa fa-arrow-left"></i></button>
     <div class="text-maintenance">
         <h1>Añadir Habitaciones</h1>
     </div>
@@ -60,6 +60,13 @@
                     Nombre is required
                                 </span>
                 <br>
+                <div>Descripción</div>
+                <div>
+                    <input class="form-control" formControlName="descripcion" type="text"></div>
+                <span class="text-danger" *ngIf="descripcionNoValida">
+                    Descripción is required
+                                </span>
+                <br>
                 <div>Ciudad</div>
                 <div>
                     <select class="form-control" formControlName="ciudadId" aria-label="Default select example">
@@ -71,7 +78,7 @@
                     Ciudad is required
                                 </span>
                 <br>
-                <div class="mb-3">
+                <div class="mb-3 ">
                     <label for="formFile" class="form-label">Imagen</label>
                     <div>
                         <input type="file" formControlName="imagen" (change)="onFileSelected($event)">
@@ -81,8 +88,8 @@
                     Imagen is required
                                 </span>
                 <br>
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="activo" type="checkbox" checked="checked" id="flexCheckDefault">
+                <div>
+                    <input class="form-check-input" formControlName="activo" type="checkbox" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
                       Disponible
                     </label>

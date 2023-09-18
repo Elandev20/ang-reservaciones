@@ -41,6 +41,7 @@ export class HotelComponent implements OnInit {
   crearFormulario(){
     this.formHotel = this.fb.group({
       nombre: new FormControl("",Validators.required),
+      descripcion: new FormControl("",Validators.required),
       activo: new FormControl(),
       ciudadId: new FormControl("",Validators.required),
       imagen: new FormControl("",Validators.required),
@@ -68,6 +69,7 @@ export class HotelComponent implements OnInit {
   newHotel(){
     this.nuevo = false;
     this.formHotel.controls['nombre'].setValue('');
+    this.formHotel.controls['descripcion'].setValue('');
     this.formHotel.controls['ciudadId'].setValue("");
     this.formHotel.controls['activo'].setValue(true);
     this.formHotel.controls['hotelId'].setValue(0);
@@ -86,6 +88,7 @@ export class HotelComponent implements OnInit {
 
   setValuesHotel(){
     this.formHotel.controls['nombre'].setValue(this.Hotel.nombre);
+    this.formHotel.controls['descripcion'].setValue(this.Hotel.descripcion);
     this.formHotel.controls['ciudadId'].setValue(this.Hotel.ciudadId);
     this.formHotel.controls['activo'].setValue(this.Hotel.activo);
     this.formHotel.controls['hotelId'].setValue(this.Hotel.hotelId);
@@ -134,6 +137,10 @@ export class HotelComponent implements OnInit {
 
   get nombreNoValida() {
     return this.formHotel.get('nombre')?.errors && this.formHotel.get('nombre')?.touched
+  }
+
+  get descripcionNoValida() {
+    return this.formHotel.get('descripcion')?.errors && this.formHotel.get('descripcion')?.touched
   }
 
   get ciudadNoValida() {
